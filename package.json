@@ -6,7 +6,6 @@
     "scripts": {
         "lint": "eslint . --ext .ts",
         "dev": "npm run lint && vite build --watch ",
-        "build:nolint": "NODE_ENV=production rollup -c",
         "build": "vite build",
         "version": "node version-bump.mjs && git add manifest.json versions.json"
     },
