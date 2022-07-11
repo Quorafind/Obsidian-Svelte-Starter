@@ -1,4 +1,4 @@
-import { App, FileView, ItemView, Platform, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
+import { App, ItemView, Platform, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
 
 import DiceRoller from "./ui/DIceRoller.svelte";
 
