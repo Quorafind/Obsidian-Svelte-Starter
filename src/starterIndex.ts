@@ -34,8 +34,6 @@ class MySvelteView extends ItemView {
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.view = new DiceRoller({ target: (this as any).contentEl, props: {} });
-
-        console.log("render");
     }
 }
 
@@ -121,7 +119,6 @@ class SampleSettingTab extends PluginSettingTab {
                 .setPlaceholder('Enter your secret')
                 .setValue(this.plugin.settings.mySetting)
                 .onChange(async (value) => {
-                    console.log('Secret: ' + value);
                     this.plugin.settings.mySetting = value;
                     await this.plugin.saveSettings();
                 }));
