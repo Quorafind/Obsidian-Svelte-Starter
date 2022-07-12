@@ -1,4 +1,4 @@
-# obsidian-react-starter
+# obsidian-svelte-starter
 
 A starter template for creating an Obsidian plugin with SvelteJS.
 
