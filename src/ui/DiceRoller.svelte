@@ -7,7 +7,7 @@
     function randomNumber(min: number, max: number): number {
         return Math.floor(
             Math.random() * (max - min + 1) + min
-        )
+        );
     }
 
     function rollDice(
@@ -30,7 +30,7 @@
 </script>
 
 <div>
-    <h1 class="H1">Dice Roller</h1>
+    <h1 class="H1">Dice Roller V2024</h1>
     <br>
     <div class="Dice-Roller-Container">
         <input

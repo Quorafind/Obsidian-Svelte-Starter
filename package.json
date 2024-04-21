@@ -4,7 +4,7 @@
     "description": "A plugin development template for devs who want to use svelte in Obsidian.",
     "main": "main.js",
     "scripts": {
-        "lint": "eslint . --ext .ts",
+        "lint": "npx eslint --ext .ts,.svelte .",
         "dev": "npm run lint && vite build --watch",
         "build": "npx svelte-check && vite build",
         "bumpversion": "node version-bump.mjs && git add manifest.json versions.json"
@@ -12,20 +12,22 @@
     "keywords": [],
     "author": "Quorafind",
     "devDependencies": {
-        "@sveltejs/vite-plugin-svelte": "^1.0.1",
-        "@tsconfig/svelte": "^3.0.0",
-        "@types/node": "^16.11.6",
-        "@typescript-eslint/eslint-plugin": "5.32.0",
-        "@typescript-eslint/parser": "5.32.0",
+        "@sveltejs/vite-plugin-svelte": "^3.1.0",
+        "@tsconfig/svelte": "^5.0.4",
+        "@types/node": "^20.12.7",
+        "@typescript-eslint/eslint-plugin": "6.21.0",
+        "@typescript-eslint/parser": "6.21.0",
         "builtin-modules": "3.3.0",
-        "eslint": "^8.21.0",
-        "eslint-plugin-svelte3": "^4.0.0",
+        "eslint": "^8.57.0",
+        "eslint-plugin-svelte": "^2.37.0",
         "obsidian": "latest",
-        "svelte": "^3.49.0",
-        "svelte-check": "^2.8.0",
-        "svelte-preprocess": "^4.10.7",
+        "obsidian-typings": "^1.0.8",
+        "svelte": "^4.2.15",
+        "svelte-check": "^3.6.9",
+        "svelte-eslint-parser": "^0.34.1",
+        "svelte-preprocess": "^5.1.4",
         "tslib": "2.4.0",
-        "typescript": "4.7.4",
-        "vite": "^3.0.0"
+        "typescript": "5.3.3",
+        "vite": "^5.2.10"
     }
 }

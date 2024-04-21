@@ -1,6 +1,6 @@
 import { App, ItemView, Platform, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
 
-import DiceRoller from "./ui/DIceRoller.svelte";
+import DiceRoller from "./ui/DiceRoller.svelte";
 
 const VIEW_TYPE = "svelte-view";
 
@@ -12,11 +12,15 @@ interface MyPluginSettings {
 
 const DEFAULT_SETTINGS: MyPluginSettings = {
     mySetting: 'default'
-}
+};
 
 
 class MySvelteView extends ItemView {
-    view: DiceRoller;
+    private component: DiceRoller | null = null;
+
+    constructor(leaf: WorkspaceLeaf) {
+        super(leaf);
+    }
 
     getViewType(): string {
         return VIEW_TYPE;
@@ -31,15 +35,13 @@ class MySvelteView extends ItemView {
     }
 
     async onOpen(): Promise<void> {
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this.view = new DiceRoller({ target: (this as any).contentEl, props: {} });
+        this.component = new DiceRoller({target: this.contentEl, props: {}});
     }
 }
 
 export default class MyPlugin extends Plugin {
-    private view: MySvelteView;
-    settings: MyPluginSettings;
+    private view: MySvelteView | null = null;
+    settings: MyPluginSettings = DEFAULT_SETTINGS;
 
     async onload() {
         await this.loadSettings();
@@ -66,11 +68,13 @@ export default class MyPlugin extends Plugin {
 
     onLayoutReady(): void {
         if (this.app.workspace.getLeavesOfType(VIEW_TYPE).length) {
+            this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle(true);
             return;
         }
-        this.app.workspace.getRightLeaf(false).setViewState({
+        this.app.workspace.getRightLeaf(false)?.setViewState({
             type: VIEW_TYPE,
         });
+        this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle(true);
     }
 
     onunload() {
@@ -92,7 +96,7 @@ export default class MyPlugin extends Plugin {
             // @ts-ignore
             !Platform.isMobile
         );
-        await leaf.setViewState({ type: VIEW_TYPE });
+        await leaf.setViewState({type: VIEW_TYPE});
         workspace.revealLeaf(leaf);
     }
 }
@@ -106,11 +110,11 @@ class SampleSettingTab extends PluginSettingTab {
     }
 
     display(): void {
-        const { containerEl } = this;
+        const {containerEl} = this;
 
         containerEl.empty();
 
-        containerEl.createEl('h2', { text: 'Settings for my awesome plugin.' });
+        containerEl.createEl('h2', {text: 'Settings for my awesome plugin.'});
 
         new Setting(containerEl)
             .setName('Setting #1')
