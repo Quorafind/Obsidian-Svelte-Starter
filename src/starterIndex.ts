@@ -68,13 +68,13 @@ export default class MyPlugin extends Plugin {
 
     onLayoutReady(): void {
         if (this.app.workspace.getLeavesOfType(VIEW_TYPE).length) {
-            this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle(true);
+            this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle();
             return;
         }
         this.app.workspace.getRightLeaf(false)?.setViewState({
             type: VIEW_TYPE,
         });
-        this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle(true);
+        this.app.workspace.rightSplit.collapsed && this.app.workspace.rightSplit.toggle();
     }
 
     onunload() {
